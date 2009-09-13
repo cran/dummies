@@ -1,7 +1,6 @@
 \name{which.dummy}
 \Rdversion{1.1}
 \alias{which.dummy}
-\alias{which.dummies}
 \title{
   Identify which columns are dummy variables on a data frame.
 }
@@ -47,7 +46,7 @@ which.dummy(data, name=NULL)
 \examples{
   data(iris)
   dat <- dummy.data.frame(iris)
-  which.dummies(dat)
+  which.dummy(dat)
 }
 \keyword{ manip }
 \keyword{ attribute }

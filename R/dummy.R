@@ -11,13 +11,18 @@
 #                value.  Used in new variable construction.  Also, set as an
 #                attribute
 #
-#   drop       : When x is a factor, whether to produce dummy variable for 
+#   drop       : Drop unused levels?.  When x is a factor, whether to produce dummy variable for 
 #                only the used levels. If x has unused levels and drop=T 
 #                ( the default ), dummy variables will not be created for
 #                the values of y and not the levels.
+# 
+#   constant   : Whether to return an identity vectors for variables that assume one value.
 #                
 #   fun        : Function to coerce the value in the final matrix.  
 #                Default: 'as,integer'
+#
+#   verbose    : logical.  Whether to print(cat) the number of variables 
+#                Default: FALSE
 #   
 #   
 #   NA         : Options: 
@@ -31,7 +36,7 @@
 #   - 
 # -----------------------------------------------------------------------------
 
-dummy <- function( x, data=NULL, sep="", drop=TRUE, fun=as.integer ) { 
+dummy <- function( x, data=NULL, sep="", drop=TRUE, fun=as.integer, verbose = FALSE ) { 
 
 
   # HANDLE IF DATA IS MISSING.  
@@ -56,24 +61,29 @@ dummy <- function( x, data=NULL, sep="", drop=TRUE, fun=as.integer ) {
 
   # TRAP FOR ONE LEVEL :  
   #   model.matrix does not work on factor w/ one level.  Here we trap for the spacial case.
-    if( length(levels(x))<2  ) {
-      warning( name, " has only 1 level. Producing dummy variable anyway." )
-      return( 
+    if( length(levels(x))<2 ) {
+      
+      if( verbose ) warning( name, " has only 1 level. Producing dummy variable anyway." )
+
+      return(          
         matrix( 
           rep(1,length(x)), 
           ncol=1, 
           dimnames=list( rownames(x), c( paste( name, sep, x[[1]], sep="" ) ) ) 
         )
       )
-    }
 
+    }
 
 
   # GET THE MODEL MATRIX   
     mm <- model.matrix( ~ x - 1, model.frame( ~ x - 1 ),  contrasts=FALSE )  # vec
     colnames.mm <- colnames(mm) 
 
+    if( verbose ) cat( " ", name, ":", ncol(mm), "dummy varibles created\n" ) 
+
     mm <- matrix( fun(mm), nrow=nrow(mm), ncol=ncol(mm), dimname=list(NULL, colnames.mm) ) 
+
 
   # Replace the column names 'x'... with the true variable name and a seperator
     colnames(mm) <- sub( "^x", paste( name, sep, sep="" ), colnames(mm) )

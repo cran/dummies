@@ -3,7 +3,7 @@
 #  Retrieve the dummy variables for a data.frame
 # -----------------------------------------------------------------------------
 
-get.dummy <- get.dummies <- function(data,name=NULL) {
+get.dummy <- function(data,name=NULL) {
     
   if( ! is.null(name) ) {
     dat <- data[ , which.dummy(data, name) ]  

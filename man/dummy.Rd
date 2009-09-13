@@ -11,18 +11,20 @@
   a variety of structures. 
 }
 \usage{
-dummy(x, data = NULL, sep = "", drop = TRUE, fun = as.integer)
+dummy(x, data = NULL, sep = "", drop = TRUE, fun = as.integer, verbose = FALSE)
 
-dummy.data.frame(data, all = TRUE, dummy.classes = getOption("dummy.classes"), ...)
+dummy.data.frame(data, names = NULL, omit.constants=TRUE, dummy.classes = getOption("dummy.classes"), all = TRUE, ...)
 }
 
 \arguments{
+
   \item{x}{ a single variable or variable _name_ } 
   \item{data}{ an object such as a data.frame or matrix that has colnames }
   \item{drop}{ 
-    when \code{x} or \code{data[,x]} is a factor, whether to produce dummy
-    variables only the used levles. By default only the used levels are 
-    retained.  Default is TRUE.
+    Whether to drop (i.e. omit) dummy variables for unused levels. 
+    When \code{x} or \code{data[,x]} is a factor, this parameter  
+    variables for only the used levels. By default, dummies are created only 
+    for the used levels, i.e. TRUE.  
   }
   \item{sep}{
     For the names of the created dummy variables, sep is the character used 
@@ -31,53 +33,82 @@ dummy.data.frame(data, all = TRUE, dummy.classes = getOption("dummy.classes"), .
   \item{fun}{
     Function used to coerce values in the resulting matrix or frame.
   }  
+  \item{verbose}{
+    logical.  Whether to print(cat) the number of dummy variables created 
+    Default: FALSE 
+  }
 
 For \code{dummy.data.frame} only: 
 
-  \item{dummy.classes}{ 
-    ( For \code{dummy.data.frame} only )  The classes for which dummy 
-    variables are created.  By default, these are factor, and character 
-    and are set globally by options('dummy.classes' ).
+  \item{names}{
+    The names of the columns to expand to dummy variables. Takes
+    precedent over \code{dummy.classes} parameter.   
   }
+
+  \item{dummy.classes}{ 
+    ( For \code{dummy.data.frame} only )  A vector of classes names for 
+    which dummy variables are created -or- "ALL" to create dummy variables
+    for all columns irregardless of type.
+    By default, dummy variables are produced for factor and character 
+    class and be modified globally by options('dummy.classes' ).
+  }
+
+  \item{omit.constants}{
+    Whether to omit dummy variables that are constants, i.e. contain only one 
+    value. Overridden by \code{drop==FALSE}.  
+  }
+    
   \item{all}{ 
     ( For \code{dummy.data.frame} only ).  Whether to return columns
     that are not dummy classes.  The default is TRUE and returns all
     classes.  Non dummy classes are untouched.  
   }
 
-
-  \item{...}{ arguments passed to other functions }
+  \item{...}{ arguments passed to \code{\link{dummy}} }
 
 }
 
 \details{
+
     \code{dummy} take a single variable OR the name of single variable  
-    with data frame coerces.  It coerces the variable to a factor and 
+    and a data frame. It coerces the variable to a factor and 
     returns a matrix of dummy variables using \code{\link{model.matrix}}.
     If the \code{data} has rownames, these are retained.
 
-    Optionally, \code{dummy} can create dummies for unused levels.  
+    Optionally, the parameter \code{drop} indicates that that dummy variables
+    will be created for only the expressed levels of factors.  Setting it
+    to false will produce dummy variables for all levels of all factors. 
 
-    If there is only one level for the variable, a warning is issued
-    before creating the dummy variable with all the same value.
+    If there is only one level for the variable and \code{verbose == TRUE}, a 
+    warning is issued before creating the dummy variable. Each element of this 
+    dummy variable, will have the same value.
 
     A seperator, \code{sep}, can be specified for the seperator between
     the variable name and the value for the construction of new variable
     names.  The default is to provide no seperator.
 
     The type of values returned can be affected using the \code{fun}
-    argument.  
+    argument.  \code{fun} is called on each of the resultant dummy 
+    variables. The only useful functions that the author has employed
+    are \code{as.interger} (the default) or \code{as.logical}.
+
 
     \code{dummy.data.frame} takes a data.frame or matrix and returns
-    a data.frame in which all columns of the \code{dummy.classes}
-    are expanded as dummy.variables.  Dummy classes can be specified
-    globally via \code{options('dummy.classes')}.  Columns that are 
-    not defined dummy.classes are untouched and are passed through. 
-    
-    If the argument \code{all} is FALSE.  The data.frame with contain
-    only the new dummy variables  By default, all columns of the 
-    object are returned and are returned in the order of the variables
-    were in in the original data.frame.
+    a data.frame in which all specified columns are expanded as 
+    dummy variables.  Specific columns can be named with the \code{names}
+    argument or specified on a class basis by the \code{dummy.classes}
+    argument. Specified names take precedent over classes.  The default
+    is to expand dummy variables for character and factor classes, and
+    can be controlled globally by \code{options('dummy.classes')}.  
+
+    If the argument \code{all} is FALSE.  The resulting data.frame
+    will contain only the new dummy variables.  By default, all columns
+    of the object are returned in the order of the original frame.  
+    Dummy variables are expanded in place.
+
+    \code{omit.constants} indicates whether to omit dummy variables that
+    assume only a single value.  This is the default.  If \code{drop==FALSE},
+    constant variables are retained regardless of the setting.
 
 }
 
@@ -105,7 +136,9 @@ variable columns replacing the original column.
 
   http://tolstoy.newcastle.edu.au/R/help/01c/0580.html
 
+  Many other discussions on R-Help.  Too many to list.
 }
+
 \author{
   Christopher Brown
 }
@@ -151,6 +184,9 @@ variable columns replacing the original column.
   dummy.data.frame(iris)
   dummy.data.frame(iris, all=FALSE)
 
+
+  dummy.data.frame(iris, dummy.class="numeric" )
+  dummy.data.frame(iris, dummy.class="ALL" )
 
 
 }

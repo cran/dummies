@@ -18,9 +18,9 @@
 \tabular{ll}{
 Package: \tab dummies\cr
 Type: \tab Package\cr
-Version: \tab 1.03\cr
-Date: \tab 2009-08-20\cr
-License: \tab GPL2 \cr
+Version: \tab 1.05-1\cr
+Date: \tab 2009-09-13\cr
+License: \tab LGPL-3 \cr
 LazyLoad: \tab yes\cr
 }
 }

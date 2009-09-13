@@ -6,9 +6,10 @@
 #   - allow for multiple names.
 # -----------------------------------------------------------------------------
 
-which.dummy <- which.dummies <- function(data, name=NULL) {
+which.dummy <- function(data, name=NULL) {
 
-  
+  indexes <- integer()  
+
   if( ! is.null(name) ) {
      indexes <- attr( data, 'dummies' )[[name]] 
   } else {  
@@ -16,7 +17,11 @@ which.dummy <- which.dummies <- function(data, name=NULL) {
     if( is.null( attr( data, 'dummies' ) ) )
       stop( "Data does not appear to have dummy variables." )
 
-    indexes <- sapply( attr( data, 'dummies' ), I ) 
+    for( name in names( attr( data, 'dummies' ) ) )
+      indexes <- append( indexes, attr( data, 'dummies')[[name]] )
+
+      # indexes <- sapply( attr( data, 'dummies' ), I, USE.NAMES=F ) 
+
   }
 
   return( sort( as.integer( indexes ) ) )
