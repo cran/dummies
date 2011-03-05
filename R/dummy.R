@@ -4,6 +4,7 @@
 #   Given a _name_ of a column and a data frame, return the data.frame for that
 #
 #   x          : a data.frame, matrix or single variable or variable name
+#
 #   data       : An object such as a matrix or data.frame with colnames.
 #                If provided, x is take as the the name of a column on the data
 #
@@ -11,19 +12,19 @@
 #                value.  Used in new variable construction.  Also, set as an
 #                attribute
 #
-#   drop       : Drop unused levels?.  When x is a factor, whether to produce dummy variable for 
-#                only the used levels. If x has unused levels and drop=T 
-#                ( the default ), dummy variables will not be created for
-#                the values of y and not the levels.
+#   drop       : Drop unused levels?.  When x is a factor, whether to produce 
+#                dummy variable for only the used levels. If x has unused 
+#                levels and drop=T ( the default ), dummy variables will not be
+#                created for the values of y and not the levels.
 # 
-#   constant   : Whether to return an identity vectors for variables that assume one value.
+#   constant   : Whether to return an identity vectors for variables that 
+#                assume one value.
 #                
 #   fun        : Function to coerce the value in the final matrix.  
 #                Default: 'as,integer'
 #
 #   verbose    : logical.  Whether to print(cat) the number of variables 
 #                Default: FALSE
-#   
 #   
 #   NA         : Options: 
 #                 encode as a seperate dummy variable default.

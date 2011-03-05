@@ -1,3 +1,30 @@
+2011-03-05 Version 1.5.4
+ + LICENSE: added
+ + DESCRIPTION: fixed Depends, Suggests
+ + R/zzz.R: fixed packageStartupMessage
+ + R/odg.R: REMOVED
+ + TODO: updated
+
+
+2011-03-02 version 1.5.3
+ + DESCRIPTION: updated contact information and version number 
+ + man/dummies-package.Rd: updated version number
+
+2010-08-23
+ + R/odg.R replaces odg.logo.R 
+ - R/zzz.R: Changed to call .odg.logo and .pack.banner
+ + DEP: R/label2call.R: added
+ + DEP: R/labels2expression.R: added
+
+2010-03-23 Version 1.05.2 (cbrown)
+ - R/zzz.R changed to only show logo once
+   + setting options( "dummy.classes" = c("factor","character") ) was mistakenly
+     removed.      Now restored.
+   + .onLoad changed to .First.lib 
+
+ - DESCRIPTION: version numbering changed from x.x-y to x.x.x
+ 
+
 2009-09-13 Version 1.05 (cbrown)
  + Properly specified license LGPL-3
 
@@ -16,9 +43,8 @@
  + R/dummy.R: added parameter verbose to print number of dummy variables created
  + R/dummy.Rd: documented verbose parameter
  + R/dummy.data.frame:
-   + Added 'names' argument for specifying specific columns takes precedent over dummy.classes 
-   + Added 
-  
+   + Added 'names' argument for specifying specific columns takes precedent 
+     over dummy.classes 
   
 
 2009-08-20 Version 1.03 (cbrown)

@@ -18,10 +18,10 @@
 \tabular{ll}{
 Package: \tab dummies\cr
 Type: \tab Package\cr
-Version: \tab 1.05-1\cr
-Date: \tab 2009-09-13\cr
-License: \tab LGPL-3 \cr
-LazyLoad: \tab yes\cr
+Version: \tab 1.5.4\cr
+Date: \tab 2011-03-05\cr
+License: \tab GPL (>= 2) \cr
+LazyLoad: \tab no\cr
 }
 }
 \author{
@@ -32,7 +32,10 @@ Maintainer: Christopher Brown
 
 \references{
   http://wiki.r-project.org/rwiki/doku.php?id=tips:data-manip:create_indicator
+
+  http://blog.opendatagroup.com/2009/09/30/r-the-dummies-package
 }
+
 \keyword{ package }
 \seealso{
    \code{link{dummy}}
