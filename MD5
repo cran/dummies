@@ -1,0 +1,14 @@
+f74c95c711660fb185b259ecbf0017b7 *ChangeLog
+d5f9415f320b5b0fc44ac9f589f5315e *DESCRIPTION
+575b6d8e15da303374a001138483880f *LICENSE
+3d1155b41162721356d55d03286d0952 *NAMESPACE
+108efbac3dfd08ac8460821a672dbcdc *R/dummy.R
+0d892814c8b746cd6a0de3011ab7d1b7 *R/dummy.data.frame.R
+b24a6fe7ee2d159c505bd5208f183199 *R/get.dummy.R
+97fa81dcb5b62665cde7cacf0de43bcc *R/which.dummy.R
+66a80e4cbcedbf58030daaad28d635a4 *R/zzz.R
+4094efc4ec3db0b9533e2f80d94e7bf0 *TODO
+5454fb6729ea9d9b35c571b3d5630f85 *man/dummies-package.Rd
+43d07619a6f06fd2e41872c7604398a8 *man/dummy.Rd
+cc8583ce1d0fa40d0677ca75fa4fa671 *man/get.dummy.Rd
+6b1789d3b9a85cb9ba7308dd9d3cd730 *man/which.dummy.Rd

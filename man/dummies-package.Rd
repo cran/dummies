@@ -18,8 +18,8 @@
 \tabular{ll}{
 Package: \tab dummies\cr
 Type: \tab Package\cr
-Version: \tab 1.5.4\cr
-Date: \tab 2011-03-05\cr
+Version: \tab 1.5.6\cr
+Date: \tab 2012-06-14\cr
 License: \tab GPL (>= 2) \cr
 LazyLoad: \tab no\cr
 }
@@ -38,7 +38,7 @@ Maintainer: Christopher Brown
 
 \keyword{ package }
 \seealso{
-   \code{link{dummy}}
+   \code{\link{dummy}}
 }
 \examples{
    # See examples in the documentation for dummy
